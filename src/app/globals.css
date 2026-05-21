@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url("/PretendardVariable.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Continuous';
+    src: url("/continuous.ttf") format("truetype");
+}
+
+* {
+    font-family: 'Pretendard';
+    user-select: none;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    background-color: #111;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .1);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+}
+
+::selection {
+    color: #111;
+    background-color: #fff;
+}
+
+.hidden {
+    display: none;
+}
