@@ -7,8 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "eslint",
-        "initalize": "bun ./initalize.ts",
-        "initalize:node": "ts-node ./initalize.ts"
+        "initialize": "bun ./initialize.ts",
+        "initialize:node": "ts-node ./initialize.ts"
     },
     "dependencies": {
         "next": "16.2.6",
