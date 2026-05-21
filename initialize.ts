@@ -346,7 +346,7 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
         const readMe = `# ${name}\r\n`;
         fs.writeFileSync("README.md", readMe, "utf-8");
 
-        rm("initalize.ts");
+        rm("initialize.ts");
 
         console.log("\r\nInitialized the project!");
     } catch (err) {
