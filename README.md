@@ -1,4 +1,4 @@
-## next-template
+# next-template
 
 개인용 Next.js 템플릿  
 > [bun](https://bun.com/)이 필수입니다.
