@@ -227,6 +227,7 @@ type PackageJson = {
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
     packageManager?: string;
+    scripts: Record<string, string>
 };
 
 async function UpdateNextJS(): Promise<string> {
@@ -344,6 +345,10 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
 
         const packageJson: PackageJson = JSON.parse(fs.readFileSync("package.json", "utf-8"));
         packageJson.name = name;
+
+        delete packageJson.scripts["initialize"];
+        delete packageJson.scripts["initialize:node"];
+
         fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 4), "utf-8");
 
         rm("initialize.ts");
