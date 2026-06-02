@@ -302,7 +302,7 @@ async function install(): Promise<void> {
     if (process.platform === "win32") {
         const where = await execFileAsync("C:/Windows/System32/where.exe", ["bun"]);
         const rawPath = where.stdout.split("\n").map(v => v.trim()).find(v => v.endsWith(".cmd"));
-        
+
         if (!rawPath) throw new Error("Cannot find bun.");
 
         await execFileAsync(rawPath, ["install"]);
@@ -325,10 +325,6 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
     try {
         const name = await readLine("What is your project name?");
 
-        const packageJson: PackageJson = JSON.parse(fs.readFileSync("package.json", "utf-8"));
-        packageJson.name = name;
-        fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 4), "utf-8");
-
         const layoutTsx = fs.readFileSync("./src/app/layout.tsx", "utf-8");
         fs.writeFileSync("./src/app/layout.tsx", layoutTsx.replaceAll("next-template", name), "utf-8");
 
@@ -345,6 +341,10 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
 
         const readMe = `# ${name}\r\n`;
         fs.writeFileSync("README.md", readMe, "utf-8");
+
+        const packageJson: PackageJson = JSON.parse(fs.readFileSync("package.json", "utf-8"));
+        packageJson.name = name;
+        fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 4), "utf-8");
 
         rm("initialize.ts");
 
