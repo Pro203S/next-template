@@ -339,7 +339,8 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
         rm(".git", { "recursive": true, "force": true });
         await execFileAsync("git", ["init"]);
         spinner.succeed("Initialized git.");
-        await execFileAsync("git", ["commit", "-m", "\"Initial Commit\""]);
+        await execFileAsync("git", ["add", "*"]);
+        await execFileAsync("git", ["commit", "-m", "Initial Commit"]);
 
         const readMe = `# ${name}\r\n`;
         fs.writeFileSync("README.md", readMe, "utf-8");
