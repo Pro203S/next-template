@@ -324,14 +324,14 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
 (async () => {
     const spinner = new ConsoleSpinner();
     try {
-        const name = await readLine("What is your project name?");
+        const name = path.basename(__dirname);
 
         const layoutTsx = fs.readFileSync("./src/app/layout.tsx", "utf-8");
         fs.writeFileSync("./src/app/layout.tsx", layoutTsx.replaceAll("next-template", name), "utf-8");
 
         console.log();
 
-        spinner.start("Updating next.js...");
+        spinner.start("Installing packages...");
         const nextLatestVersion = await UpdateNextJS();
         spinner.succeed("Updated next.js to " + chalk.bold(nextLatestVersion));
 
@@ -339,6 +339,7 @@ const readLine = (q: string) => new Promise<string>(r => line.question(`${chalk.
         rm(".git", { "recursive": true, "force": true });
         await execFileAsync("git", ["init"]);
         spinner.succeed("Initialized git.");
+        await execFileAsync("git", ["commit", "-m", "\"Initial Commit\""]);
 
         const readMe = `# ${name}\r\n`;
         fs.writeFileSync("README.md", readMe, "utf-8");
